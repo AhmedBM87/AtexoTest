@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Jeux de cartes</title>
+	<link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+
+<body>
+
+	<main role="main" class="container">
+		<div class="starter-template">
+			<h1>
+				<span th:text="'Un packet de jeux contient 52 cartes :'"></span>
+			</h1>
+		</div>
+		<div style="overflow-x:auto;">
+			<table>
+				<tr>
+					<th th:each="card : ${cards}"> <label th:text="${card.toString()}"></label></th>
+				</tr>
+				<tr>
+					<td th:each="card : ${cards}"><img
+							th:src="@{'/img/' + ${card.getValue().getValue()} + '_' + ${card.getColor().getValue()} +'.png'}">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div class="starter-template">
+			<h2>
+				<span th:text="'Un joueur tire une main de 10 cartes tirées de manière aléatoire :'"></span>
+			</h2>
+		</div>
+		<div>
+			<img th:src="@{'/img/hand.png'}" onclick='window.location.reload(false)' class="img-template">
+		</div>
+
+
+		<br>
+		<h3>
+			<span th:text="'- La main non triée :'"></span>
+		</h3>
+
+		<div style="overflow-x:auto;">
+			<table>
+				<tr>
+					<th th:each="card : ${randomHandCards}"> <label th:text="${card.toString()}"></label></th>
+				</tr>
+				<tr>
+					<td th:each="card : ${randomHandCards}"><img
+							th:src="@{'/img/' + ${card.getValue().getValue()} + '_' + ${card.getColor().getValue()} +'.png'}">
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<h3>
+			<span th:text="'- La main triée :'"></span>
+		</h3>
+
+		<div style="overflow-x:auto;">
+			<table>
+				<tr>
+					<th th:each="card : ${storedHandCards}"> <label th:text="${card.toString()}"></label></th>
+				</tr>
+				<tr>
+					<td th:each="card : ${storedHandCards}"><img
+							th:src="@{'/img/' + ${card.getValue().getValue()} + '_' + ${card.getColor().getValue()} +'.png'}">
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</main>
+	<!-- /.container -->
+
+	<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
